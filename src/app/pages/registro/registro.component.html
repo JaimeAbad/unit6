@@ -11,16 +11,64 @@
     <title>Registro</title>
   </head>
   <body>
+    <h2>Crear Nueva Cuneta</h2>
     <!-- hay que importar FormsModule en module para poder usar ngModel aqui -->
-    <div class="wrap-input-100 m-b-16">
-      <input class="input100"
-             type="text"
-             name="email"
 
-             [(ngModel)]="usuario.email"
-             placeholder="Email">
-      Registro100
+
+    <div class="container-login100">
+      <div class="wrap-login100 p-t-500 p-b-90">
+        <form (ngSubmit)= "validarFormulario(formularioReferenciaLocal)"
+              #formularioReferenciaLocal="ngForm"
+              class="login100-form validate-form flex-sb flex-w">
+
+            <span class="login100-form-title p-b-51">
+                Crear nueva cuenta
+            </span>
+
+            <div class="wrap-input100 m-b-16">
+              <input class="input100"
+                     type="nombre"
+                     name="nombre"
+                     [(ngModel)]="usuario.nombre"
+                     required
+                     minlength="2"
+                     nombre
+                     placeholder="Nombre y apellidos">
+              <span class="focus-input100"></span>
+            </div>
+
+
+<!-- <span class="text-danger">El correo es obligatorio</span> -->
+            <div class="wrap-input100 m-b-16">
+              <input class="input100"
+                     type="email"
+                     name="email"
+                     [(ngModel)]="usuario.email"
+                     required
+                     email
+                     placeholder="Email">
+            </div>
+            <!-- <span class="text-danger">La contraseña es obligatoria y debe contener almenos 6 caracteres</span> -->
+            <div class="wrap-input100 m-b-16" data-validate>
+              <input class="input100"
+                     type="password"
+                     name="password"
+                     [(ngModel)]="usuario.password"
+                     required
+                     minlength="6"
+                     password
+                     placeholder="Password">
+              <span class="focus-input100"></span>
+            </div>
+
+
+        </form>
+
+      </div>
+
     </div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
