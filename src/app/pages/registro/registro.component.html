@@ -24,6 +24,21 @@
             <span class="login100-form-title p-b-51">
                 Crear nueva cuenta
             </span>
+            <span *ngIf="formularioReferenciaLocal.submitted &&
+                          formularioReferenciaLocal.controls['email'].errors"
+                          class="text-danger animated fadeIn">
+              El correo es obligatorio
+            </span>
+            <span *ngIf="formularioReferenciaLocal.submitted &&
+                          formularioReferenciaLocal.controls['nombre'].errors"
+                          class="text-danger">
+              El nombre es obligatorio
+            </span>
+            <span *ngIf="formularioReferenciaLocal.submitted &&
+                          formularioReferenciaLocal.controls['password'].errors"
+                          class="text-danger">
+              Contraseña Inválida. Debe contener almenos 6 caracteres.
+            </span>
 
             <div class="wrap-input100 m-b-16">
               <input class="input100"
@@ -49,7 +64,7 @@
                      placeholder="Email">
             </div>
             <!-- <span class="text-danger">La contraseña es obligatoria y debe contener almenos 6 caracteres</span> -->
-            <div class="wrap-input100 m-b-16" data-validate>
+            <div class="wrap-input100 m-b-16" data-validate = "Password">
               <input class="input100"
                      type="password"
                      name="password"
@@ -60,7 +75,12 @@
                      placeholder="Password">
               <span class="focus-input100"></span>
             </div>
+            <div>
+              <a routerLink="/login" class="txt1">
+                ¿Aún no tienes cuenta? / Ingresar
+              </a>
 
+            </div>
 
         </form>
 
