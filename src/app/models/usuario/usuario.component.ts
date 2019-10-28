@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class UsuarioComponent {
 
+nuevoUsuario( usuario: UsuarioComponent){
+    const authData = {
+      email: usuario.email,
+      password: usuario.password,
+      returnSecureToken: true
+    }
+
+}
   email:string;
   password:string;
   nombre:string;
