@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioComponent } from 'src/app/models/usuario/usuario.component';
 import { NgForm } from '@angular/forms';
+import { AutenticacionService } from 'src/app/service/autenticacion.service';
 
 @Component({
   selector: 'app-registro',
@@ -10,7 +11,7 @@ import { NgForm } from '@angular/forms';
 export class RegistroComponent implements OnInit {
 
   usuario: UsuarioComponent;
-  constructor() { }
+  constructor(private autenticacion: AutenticacionService) { }
 
   ngOnInit() {
     this.usuario = new UsuarioComponent();
@@ -18,8 +19,24 @@ export class RegistroComponent implements OnInit {
     // aqui arriba si ponemos un usuario nos sale en la web por defecto
   }
   validarFormulario(form: NgForm ){
-    console.log("Formulario enviado de: ", this.usuario);
-    console.log("Form: ", form);
+
+    if (form.invalid) {
+        return;
+    }
+
+    this.autenticacion.nuevoUsuario( this.usuario )
+    .subscribe( resp => {
+      console.log(resp);
+    }, (error)=> {
+      console.log(error);
+      console.log(error.error.error,onmessage);
+    });
+    // console.log("Formulario enviado de: ", this.usuario);
+    // console.log("Form: ", form);
   }
+
+
+
+
 
 }
