@@ -29,7 +29,7 @@ export class AutenticacionService {
       '{ this.url }:signUp?=${ this.apiKey }',
     authData
   ).pipe(
-    map( resp => {
+    map( resp => { //es lo que me va a devolver el token
       this.guardarToken ( resp['idToken']); //Filtro la informacion
       return resp;
     })

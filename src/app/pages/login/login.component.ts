@@ -12,30 +12,44 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  usuario: UsuarioComponent;
+  recordarme: boolean;
 
-  constructor() { }
+  constructor(private autenticacion: AutenticacionService ) { }
 
   ngOnInit() {
   }
 
   login( form: NgForm) {
-    if (form.invalid) {
-        return;
-    }
+    if ( form.invalid) { return; }
+
     Swal.fire({
       allowOutsideClick: false, //prevenir cerrar el alert al clicar
       type: 'info',
       text: 'Espere por favor ...'
     });
-    //METODO PARA QUE NO APAREXCA BOTON DE ACEPTAR/OK
+    //METODO PARA QUE NO APAREZCA BOTON DE ACEPTAR/OK
     Swal.showLoading();
 
     this.autenticacion.login( this.usuario )
     .subscribe( resp => {
       console.log(resp);
+      Swal.close();
+
+      //Controlo si se ha pulsado correctamente
+      if (this.recordarme) {
+          localStorage.setItem('email', this.usuario.email);
+      }
+
+
     }, (error)=> {
       console.log(error);
-      console.log(error.error.error,onmessage);
+      console.log(error.error.error.message);
+      Swal.fire({
+        type: 'error',
+        title: 'Error al autenticar',
+        text: error.error.error.message
+      });
     });
 
 
