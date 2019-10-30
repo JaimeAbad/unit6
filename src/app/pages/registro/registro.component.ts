@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioComponent } from 'src/app/models/usuario/usuario.component';
 import { NgForm } from '@angular/forms';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -29,7 +30,12 @@ export class RegistroComponent implements OnInit {
       console.log(resp);
     }, (error)=> {
       console.log(error);
-      console.log(error.error.error,onmessage);
+      console.log(error.error.error.message);
+      Swal.fire({
+        type: 'error',
+        title: 'Error al autenticar',
+        text: error.error.error.message
+      });
     });
     // console.log("Formulario enviado de: ", this.usuario);
     // console.log("Form: ", form);

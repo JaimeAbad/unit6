@@ -9,6 +9,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { UsuarioComponent } from './models/usuario/usuario.component';
+import { NavbarComponent } from './pages/navbar/navbar.component';
+import { APP_ROUTING } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,15 @@ import { UsuarioComponent } from './models/usuario/usuario.component';
     HomeComponent,
     LoginComponent,
     RegistroComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    APP_ROUTING
   ],
   providers: [],
   bootstrap: [AppComponent]

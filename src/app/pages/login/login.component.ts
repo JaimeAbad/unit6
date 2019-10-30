@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     if ( form.invalid) { return; }
 
     Swal.fire({
-      allowOutsideClick: false, //prevenir cerrar el alert al clicar
+      allowOutsideClick: true, //prevenir cerrar el alert al clicar
       type: 'info',
       text: 'Espere por favor ...'
     });
