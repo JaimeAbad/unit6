@@ -8,9 +8,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
-import { UsuarioComponent } from './models/usuario/usuario.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { APP_ROUTING } from './app.routes';
+import { AutenticacionService } from './service/autenticacion.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import { APP_ROUTING } from './app.routes';
     HomeComponent,
     LoginComponent,
     RegistroComponent,
-    UsuarioComponent,
     NavbarComponent
   ],
   imports: [
@@ -26,9 +25,9 @@ import { APP_ROUTING } from './app.routes';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    APP_ROUTING
+    APP_ROUTING,
   ],
-  providers: [],
+  providers: [AutenticacionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

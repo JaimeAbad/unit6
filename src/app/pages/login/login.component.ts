@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsuarioComponent } from '../../models/usuario/usuario.component';
+import { UsuarioModel } from '../../models/usuarios.model';
 import { AutenticacionService } from '../../service/autenticacion.service';
 // ES6 MODULES OR TYPESCRIPT
 import Swal from 'sweetalert2';
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  usuario: UsuarioComponent;
+  usuario: UsuarioModel;
   recordarme: boolean;
 
   constructor(private autenticacion: AutenticacionService ) { }

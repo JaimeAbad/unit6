@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioComponent } from 'src/app/models/usuario/usuario.component';
+import { UsuarioModel } from 'src/app/models/usuarios.model';
 import { NgForm } from '@angular/forms';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import Swal from 'sweetalert2';
@@ -11,11 +11,11 @@ import Swal from 'sweetalert2';
 })
 export class RegistroComponent implements OnInit {
 
-  usuario: UsuarioComponent;
+  usuario: UsuarioModel;
   constructor(private autenticacion: AutenticacionService) { }
 
   ngOnInit() {
-    this.usuario = new UsuarioComponent();
+    this.usuario = new UsuarioModel();
     this.usuario.email = '';
     // aqui arriba si ponemos un usuario nos sale en la web por defecto
   }
