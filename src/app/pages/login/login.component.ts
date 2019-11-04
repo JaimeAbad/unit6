@@ -4,6 +4,7 @@ import { UsuarioModel } from '../../models/usuarios.model';
 import { AutenticacionService } from '../../service/autenticacion.service';
 // ES6 MODULES OR TYPESCRIPT
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,18 +14,32 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   usuario: UsuarioModel;
-  recordarme: boolean;
+  recordarme = false;
 
-  constructor(private autenticacion: AutenticacionService ) { }
+  constructor(private autenticacion: AutenticacionService,
+     private router : Router ) {
+
+  }
 
   ngOnInit() {
+    this.usuario = new UsuarioModel();
+    this.usuario.email = '';
+
+    /*Comprobar si pulsamos 'recordarme' para cargar la info del localStorage*/
+    if(localStorage.getItem('email') ){
+      this.usuario.email = localStorage.getItem('email');
+      this.recordarme = true;
+    }
+
+
+
   }
 
   login( form: NgForm) {
     if ( form.invalid) { return; }
 
     Swal.fire({
-      allowOutsideClick: true, //prevenir cerrar el alert al clicar
+      allowOutsideClick: false, //prevenir cerrar el alert al clicar
       type: 'info',
       text: 'Espere por favor ...'
     });
@@ -35,7 +50,7 @@ export class LoginComponent implements OnInit {
     .subscribe( resp => {
       console.log(resp);
       Swal.close();
-
+      this.router.navigateByUrl('/home');
       //Controlo si se ha pulsado correctamente
       if (this.recordarme) {
           localStorage.setItem('email', this.usuario.email);

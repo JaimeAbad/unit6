@@ -3,6 +3,7 @@ import { UsuarioModel } from 'src/app/models/usuarios.model';
 import { NgForm } from '@angular/forms';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -12,7 +13,9 @@ import Swal from 'sweetalert2';
 export class RegistroComponent implements OnInit {
 
   usuario: UsuarioModel;
-  constructor(private autenticacion: AutenticacionService) { }
+  recordarme = false;
+  constructor(private autenticacion: AutenticacionService,
+  private router: Router) { }
 
   ngOnInit() {
     this.usuario = new UsuarioModel();
@@ -24,10 +27,24 @@ export class RegistroComponent implements OnInit {
     if (form.invalid) {
         return;
     }
+    Swal.fire({
+      allowOutsideClick: false, //prevenir cerrar el alert
+      type: 'info',
+      text: 'Espere por favor ...'
+    });
+    //Metodo para que no aparezca boton de aceptar
+    Swal.showLoading();
 
     this.autenticacion.nuevoUsuario( this.usuario )
     .subscribe( resp => {
       console.log(resp);
+      Swal.close();
+      this.router.navigateByUrl('/home');
+
+      //controlo si se ha pulsado recordarme
+      if (this.recordarme) {
+          localStorage.setItem('email', this.usuario.email);
+      }
     }, (error)=> {
       console.log(error);
       console.log(error.error.error.message);
