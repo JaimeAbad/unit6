@@ -1,7 +1,7 @@
 <div class="limiter animated fadeInRight">
   <div class="container-login100">
     <div class="wrap-login100 p-t-50 p-b-90">
-      <form (ngsubmit)="login(f)"
+      <form (ngSubmit)="login(f)"
       #f="ngForm"
       class="login100-form validate-form flex-sb flex-w">
         <span class="login100-form-title p-b-51">Login</span>
@@ -45,14 +45,11 @@
             </label>
           </div>
         </div>
-        <div class="wrap-input100 m-b-16">
-          <button class="login100-form-btn"
-                 type="submit"
-                 name="ngsubmit"
-                 placeholder="ngSubmit">Iniciar Sesión</button>
 
-        </div>
-
+        <button class="container-login100-form-btn login100-form-btn"
+                type="submit"
+                name="button">Iniciar Sesión
+        </button>
 
       </form>
     </div>

@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 export class AutenticacionService {
   //url comun en varios servicios
   private url = 'https://identitytoolkit.googleapis.com/v1/accounts';
+
   private apiKey = 'AIzaSyAKfGSUr5qnCwubl5lsRTa4b0K8USTDZY4';
   userToken: string;
 
@@ -26,14 +27,14 @@ export class AutenticacionService {
     }
     //LLAMO AL SERVICIO (POST)
     return this.http.post(
-      '{ this.url }:signUp?=${ this.apiKey }',
-    authData
-  ).pipe(
-    map( resp => { //es lo que me va a devolver el token
-      this.guardarToken ( resp['idToken']); //Filtro la informacion
-      return resp;
-    })
-  );
+      `${ this.url }:signUp?key=${ this.apiKey }`,
+      authData
+    ).pipe(
+      map( resp => { //es lo que me va a devolver el token
+        this.guardarToken ( resp['idToken']); //Filtro la informacion
+        return resp;
+      })
+    );
 
   }
 
@@ -47,8 +48,8 @@ export class AutenticacionService {
   }
   //LLAMO AL SERVICIO (POST)
   return this.http.post(
-    '{ this.url }:signInWithPassword?key=${ this.apiKey }',
-  authData
+    `${ this.url }:signInWithPassword?key=${ this.apiKey }`,
+    authData
   );
   }
 

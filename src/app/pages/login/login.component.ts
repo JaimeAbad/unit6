@@ -6,7 +6,6 @@ import { AutenticacionService } from '../../service/autenticacion.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,13 +29,12 @@ export class LoginComponent implements OnInit {
       this.usuario.email = localStorage.getItem('email');
       this.recordarme = true;
     }
-
-
-
   }
 
   login( form: NgForm) {
-    if ( form.invalid) { return; }
+    if ( form.invalid) {
+      return;
+    }
 
     Swal.fire({
       allowOutsideClick: false, //prevenir cerrar el alert al clicar
@@ -46,11 +44,22 @@ export class LoginComponent implements OnInit {
     //METODO PARA QUE NO APAREZCA BOTON DE ACEPTAR/OK
     Swal.showLoading();
 
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'center',
+      showConfirmButton: false,
+      timer: 3000
+    })
+
     this.autenticacion.login( this.usuario )
     .subscribe( resp => {
       console.log(resp);
       Swal.close();
       this.router.navigateByUrl('/home');
+      Toast.fire({
+        type: 'success',
+        title: 'Logeado'
+      })
       //Controlo si se ha pulsado correctamente
       if (this.recordarme) {
           localStorage.setItem('email', this.usuario.email);
