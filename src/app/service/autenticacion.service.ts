@@ -67,4 +67,10 @@ export class AutenticacionService {
     }
   }
 
+  comprobarEstarAutenticado(): boolean {
+    return this.userToken.length > 2;
+  }
+
+
+
 }

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   usuario: UsuarioModel;
-  recordarme = false;
+  recordarme : boolean;
 
   constructor(private autenticacion: AutenticacionService,
      private router : Router ) {
