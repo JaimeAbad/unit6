@@ -15,7 +15,6 @@ export class AutenticacionService {
 
   constructor(private http: HttpClient) { }
 
-  salir() { }
 
   //Registrar nuevo usuario
   //https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
@@ -69,6 +68,10 @@ export class AutenticacionService {
 
   comprobarEstarAutenticado(): boolean {
     return this.userToken.length > 2;
+  }
+
+  salir(){
+    localStorage.removeItem('token');
   }
 
 

@@ -7,10 +7,18 @@ import { AutenticacionService } from '../service/autenticacion.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  router: any;
   constructor (private auth: AutenticacionService){}
 
   canActivate(): boolean {
-    return this.auth.comprobarEstarAutenticado();
+
+    if (this.auth.comprobarEstarAutenticado) {
+        return true;
+    } else {
+      this.router.navigateByUrl('/login');
+      return false;
+    }
+    // return this.auth.comprobarEstarAutenticado();
   }
 
 }
